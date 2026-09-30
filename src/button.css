@@ -1,13 +1,13 @@
 .sqab-host {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 10px;
+  right: 10px;
   z-index: 2147483000;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
 }
 /* Leave room for each site's own "more" menu in the top-right corner. */
-.sqab-host[data-site="x"] { right: 48px; }
-.sqab-host[data-site="instagram"] { right: 48px; }
-.sqab-host[data-site="facebook"] { right: 56px; }
-.sqab-host[data-site="youtube"] { top: 12px; right: 12px; }
+.sqab-host[data-site="x"] { right: 56px; }
+.sqab-host[data-site="instagram"] { right: 56px; }
+.sqab-host[data-site="facebook"] { right: 64px; }
+.sqab-host[data-site="youtube"] { top: 14px; right: 14px; }

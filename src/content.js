@@ -12,14 +12,15 @@
   };
 
   const SHADOW_CSS = `
-    button { all: initial; box-sizing: border-box; width: 32px; height: 32px; display: flex; align-items: center;
-      justify-content: center; border-radius: 50%; cursor: pointer; color: #fff; background: rgba(20,20,20,.72);
-      box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .12s, background .12s; }
-    button:hover { background: rgba(0,0,0,.9); transform: scale(1.1); }
-    button:focus-visible { outline: 2px solid #4da3ff; outline-offset: 2px; }
-    button[data-state="done"] { background: #1a9b4b; }
-    button[data-state="error"] { background: #c0392b; }
-    svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    button { all: initial; box-sizing: border-box; width: 44px; height: 44px; display: flex; align-items: center;
+      justify-content: center; border-radius: 50%; cursor: pointer; color: #fff; background: #0a84ff;
+      border: 2px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,.55), 0 0 0 2px rgba(10,132,255,.35);
+      transition: transform .12s, background .12s; }
+    button:hover { background: #0066d6; transform: scale(1.12); }
+    button:focus-visible { outline: 3px solid #ffd60a; outline-offset: 2px; }
+    button[data-state="done"] { background: #1a9b4b; box-shadow: 0 2px 10px rgba(0,0,0,.55), 0 0 0 2px rgba(26,155,75,.35); }
+    button[data-state="error"] { background: #d63031; box-shadow: 0 2px 10px rgba(0,0,0,.55), 0 0 0 2px rgba(214,48,49,.35); }
+    svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
   `;
 
   let settings = { quality: 'best' };
