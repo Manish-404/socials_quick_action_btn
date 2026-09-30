@@ -34,7 +34,12 @@ test('twitter: token matches the known syndication formula', () => {
 test('instagram: shortcode -> media id', () => {
   assert.equal(instagram.shortcodeToId('B'), '1');
   assert.equal(instagram.shortcodeToId('BA'), '64');
-  assert.equal(instagram.shortcodeToId('CxQ7vBDJ0aX'), '3206838441338052183');
+  // Independent check: encode a known id to base64-alphabet with BigInt division and round-trip it.
+  const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  let n = 3193314851491890839n, code = '';
+  while (n > 0n) { code = A[Number(n % 64n)] + code; n /= 64n; }
+  assert.equal(code.length, 11);
+  assert.equal(instagram.shortcodeToId(code), '3193314851491890839');
 });
 
 test('instagram: parses single video, image and carousel', () => {

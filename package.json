@@ -4,7 +4,7 @@
   "private": true,
   "description": "Browser extension: one-click download button next to reels, shorts and posts.",
   "scripts": {
-    "test": "node --test test/unit/",
+    "test": "node --test \"test/unit/*.test.js\"",
     "test:e2e": "node test/e2e/run.js"
   }
 }

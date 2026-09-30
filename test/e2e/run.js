@@ -75,6 +75,13 @@ const POST_HTML = `<!doctype html><html><body>
     await page.waitForTimeout(300);
     assert.equal(await page.locator('article .sqab-host').count(), 1, 'no duplicate after mutation');
 
+    // Playwright renames downloaded files, so record the options the extension passes to chrome.downloads.
+    await sw.evaluate(() => {
+      const orig = chrome.downloads.download.bind(chrome.downloads);
+      globalThis.__calls = [];
+      chrome.downloads.download = (opts, ...rest) => (globalThis.__calls.push(opts), orig(opts, ...rest));
+    });
+
     // Closed shadow root: click by position.
     const box = await page.locator('article .sqab-host').boundingBox();
     await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
@@ -86,8 +93,9 @@ const POST_HTML = `<!doctype html><html><body>
     }
     assert.ok(item, 'a download was started');
     assert.equal(item.url, mediaUrl, 'highest-bitrate variant chosen');
-    assert.match(item.filename.replace(/\\/g, '/'), /SocialDownloads\/x_alice_111\.mp4$/);
-    console.log('e2e OK:', item.filename);
+    const [call] = await sw.evaluate(() => globalThis.__calls);
+    assert.equal(call.filename, 'SocialDownloads/x_alice_111.mp4');
+    console.log('e2e OK:', call.filename);
   } finally {
     await ctx.close();
     cdn.close();
