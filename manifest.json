@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Social Quick Download",
+  "version": "0.1.0",
+  "description": "Adds a one-click download button next to reels, shorts and posts on Instagram, YouTube, Facebook and X.",
+  "minimum_chrome_version": "110",
+  "permissions": ["downloads", "webRequest", "storage"],
+  "host_permissions": [
+    "*://*.instagram.com/*",
+    "*://*.youtube.com/*",
+    "*://*.facebook.com/*",
+    "*://*.fbcdn.net/*",
+    "*://x.com/*",
+    "*://twitter.com/*",
+    "*://cdn.syndication.twimg.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.instagram.com/*",
+        "*://*.youtube.com/*",
+        "*://*.facebook.com/*",
+        "*://x.com/*",
+        "*://twitter.com/*"
+      ],
+      "js": [
+        "src/core.js",
+        "src/lib/pick.js",
+        "src/lib/sniff.js",
+        "src/adapters/instagram.js",
+        "src/adapters/youtube.js",
+        "src/adapters/twitter.js",
+        "src/adapters/facebook.js",
+        "src/content.js"
+      ],
+      "css": ["src/button.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": false
+  }
+}

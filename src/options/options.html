@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Social Quick Download – Options</title>
+  <style>
+    body { font: 14px system-ui, sans-serif; margin: 16px; min-width: 320px; }
+    label { display: block; margin: 12px 0 4px; font-weight: 600; }
+    input, select { width: 100%; box-sizing: border-box; padding: 6px; }
+    small { color: #666; }
+    #status { color: #1a9b4b; height: 1.2em; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <label for="template">Filename template</label>
+  <input id="template" type="text">
+  <small>Variables: {site} {author} {id} {date}. Files go to Downloads/SocialDownloads/.</small>
+
+  <label for="quality">Video quality</label>
+  <select id="quality">
+    <option value="best">Best available</option>
+    <option value="smallest">Smallest file</option>
+  </select>
+
+  <div id="status" role="status"></div>
+  <script src="options.js"></script>
+</body>
+</html>
